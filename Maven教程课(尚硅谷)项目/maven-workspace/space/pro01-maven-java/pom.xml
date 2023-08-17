@@ -1,0 +1,63 @@
+<!-- project 标签：根标签，表示对当前工程进行配置、管理 -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <!-- modelVersion 标签:从 Maven 2 开始就固定是 4.0.0 -->
+  <!-- 代表当前 pom.xml 所采用的标签结构 -->
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- 坐标信息 -->
+  <!-- 在本地仓库中安装后对应的路径: -->
+  <!-- com\myxh\maven\pro01-maven-java\1.0-SNAPSHOT\pro01-maven-java-1.0-SNAPSHOT.jar -->
+  <!-- groupId 标签：坐标向量之一；表公司或组织开发的某一个项目 -->
+  <groupId>com.myxh.maven</groupId>
+
+  <!-- artifactId 标签：坐标向量之一；代表项目下的某一个模块 -->
+  <artifactId>pro01-maven-java</artifactId>
+
+  <!-- version 标签：坐标向量之一；代表当前模块的版木 -->
+  <version>1.0-SNAPSHOT</version>
+
+  <!-- packaging 标签：打包方式 -->
+  <!-- 取值 jar：生成 jar 包，说明这是一个 Java 工程 -->
+  <!-- 取值 war：生成 war 包，说明这是一个 Web 工程 -->
+  <!-- 取值 pom：说明这个工程是用来管理其它工程的工程 -->
+  <packaging>jar</packaging>
+
+  <name>pro01-maven-java</name>
+  <url>http://maven.apache.org</url>
+
+  <!-- properties 标签：在 Maven 中定义属性值 -->
+  <properties>
+    <!-- 在构建过程中读取源码时使用的字符集 -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <!-- dependencies 标签：配置具体依赖信息，可以包含多个 dependency 子标签 -->
+  <dependencies>
+    <!-- dependency 标签：配置一个具体的依赖信息 -->
+    <dependency>
+      <!-- 坐标信息：导入哪个 jar 包，就配置它的坐标信息即可 -->
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.1</version>
+
+      <!-- scope 标签：配置当前依赖的范围 -->
+      <scope>test</scope>
+    </dependency>
+
+    <!-- 以 compile 范围导入 spring-core 依赖，测试依赖的传递性 -->
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>4.0.0.RELEASE</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+</project>

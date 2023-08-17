@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.myxh.maven</groupId>
+  <artifactId>pro03-maven-parent</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <!-- 当前工程作为父工程，要去管理其它工程，打包方式必须是 pom -->
+  <packaging>pom</packaging>
+
+  <name>pro03-maven-parent</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!-- 创建我们自定义的属性标签 -->
+    <!-- 标签名：属性名 -->
+    <!-- 标签值：属性值 -->
+    <!-- 引用方式：${myxh.spring.version} -->
+    <myxh.spring.version>4.2.0.RELEASE</myxh.spring.version>
+  </properties>
+
+  <!--聚合的配置 -->
+  <modules>
+    <module>pro04-maven-module</module>
+    <module>pro05-maven-module</module>
+    <module>pro06-maven-module</module>
+  </modules>
+
+  <!-- 在父工程中统一管理依赖信息 -->
+  <!-- 注意：即使在父工程配置了对依赖的管理，子工程需要使用具体哪一个依赖还是要明确配置 -->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+
+        <!-- 通过引用属性表达式设定版本号，这样版本号就成了一个动态值 -->
+        <!-- 通过属性名解析后才知道具体是什么值 -->
+        <version>${myxh.spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-beans</artifactId>
+        <version>${myxh.spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${myxh.spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-expression</artifactId>
+        <version>${myxh.spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-aop</artifactId>
+        <version>${myxh.spring.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+</project>

@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- parent 标签给当前工程配置父工程 -->
+  <parent>
+    <!-- 通过指定父工程的坐标找到父工程 -->
+    <groupId>com.myxh.maven</groupId>
+    <artifactId>pro03-maven-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <!-- 子工程的 groupid 如果和父工程一样，则可以省略 -->
+  <!-- <groupId>com.myxh.maven</groupId> -->
+
+  <!-- 子工程的 version 如果和父工程一样，则可以省略 -->
+  <!-- <version>1.0-SNAPSHOT</version> -->
+
+  <!-- 省略 groupId 和 version 后，子工程自己的坐标可以只保留 artifactId -->
+  <artifactId>pro04-maven-module</artifactId>
+
+  <name>pro04-maven-module</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.1</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- 即使在父工程配置了对依赖的管理，子工程需要使用具体哪一个依赖还是要明确配置 -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+
+      <!-- 对于已经在父工程进行了管理的依赖，子工程中引用时可以不写 version -->
+      <!-- <version>4.0.0.RELEASE</version> -->
+      <!-- 情况 1 确实省略了 version 标签：子工程采纳的就是父工程管理的版本 -->
+      <!-- 情况 2 没有省略 version 标签：
+             A：这里配置了 version 和父工程管理的版不一致，最终还是采纳这个版本
+             B：这里配置了 version，但是和父工程管理的版本不一致，那么这里子工程配置的版本会覆盖父工程管理的版本并最终采纳，绝大部分情况下子工程还是遵从父工程统一管理的依赖
+       -->
+    </dependency>
+
+    <!-- 测试聚合之后可以一键安装：让 pro04-maven-module 依赖 pro05-maven-module -->
+      <dependency>
+        <groupId>com.myxh.maven</groupId>
+        <artifactId>pro05-maven-module</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+</project>
